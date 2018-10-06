@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+   <!-- <appender name="fileWarn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+   &lt;!&ndash;ERROR(40, "ERROR"),
+       WARN(30, "WARN"),
+       INFO(20, "INFO"),
+       DEBUG(10, "DEBUG"),
+       TRACE(0, "TRACE");&ndash;&gt;
+            &lt;!&ndash;DENY,禁止
+           NEUTRAL, 中立-忽略规则往下走
+           ACCEPT;  接受 &ndash;&gt;
+            &lt;!&ndash;如果匹配到禁止掉&ndash;&gt;
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            &lt;!&ndash;路径&ndash;&gt;
+            <fileNamePattern>d:/log/tomcat/sell/warn.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="fileDebug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            &lt;!&ndash;路径&ndash;&gt;
+            <fileNamePattern>d:/log/tomcat/sell/debug.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>-->
+
+    <appender name="fileInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <!--输出格式-->
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略 每天一个文件-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>d:/log/tomcat/sell/info.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+
+    <appender name="fileError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--根据范围进行过滤-只输出error级别的日志-->
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>/var/log/tomcat/sell/error.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--整个项目下适用-设置级别-->
+    <root level="info">
+        <appender-ref ref="fileInfo" />
+<!--        <appender-ref ref="fileWarn" />
+        <appender-ref ref="fileDebug" />-->
+        <appender-ref ref="fileError" />
+
+    </root>
+
+</configuration>
