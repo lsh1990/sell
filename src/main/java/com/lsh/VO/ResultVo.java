@@ -14,7 +14,7 @@ public class ResultVo<T> {
     /**
      * 错误码
      */
-    private String code;
+    private Integer code;
     /**
      * 提示信息
      */
@@ -24,9 +24,12 @@ public class ResultVo<T> {
      */
     private T data;
 
-    public ResultVo(String code, String msg, T data) {
+    public ResultVo(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    public ResultVo() {
     }
 }
