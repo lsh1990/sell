@@ -15,10 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -83,5 +80,28 @@ public class BuyerOrderController {
         Page<OrderDTO> orderDTOPage = orderService.findList(openid, request);
 
         return ResultVoUtil.success(orderDTOPage.getContent());
+    }
+    /**
+        * @Description: 订单详情
+    	* @Param [openid, orderId]
+    	* @Return com.lsh.VO.ResultVo<com.lsh.dto.OrderDTO>
+        * @author lsh
+        * @date 2018/10/15 21:57
+        */
+    @GetMapping("/detail")
+    public ResultVo<OrderDTO> detail(@RequestParam("openid") String openid,
+                                     @RequestParam("orderId") String orderId) {
+        //TODO 不安全做法，改进
+        OrderDTO orderDTO = orderService.findOne(orderId);
+        return ResultVoUtil.success(orderDTO);
+    }
+
+    @PostMapping("/cancel")
+    public ResultVo cancel(@RequestParam("openid") String openid,
+                           @RequestParam("orderId") String orderId) {
+        //TODO 不安全做法，改进
+        OrderDTO orderDTO = orderService.findOne(orderId);
+        orderService.cancel(orderDTO);
+        return ResultVoUtil.success();
     }
 }

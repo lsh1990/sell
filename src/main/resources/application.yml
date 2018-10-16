@@ -3,10 +3,14 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.1.20/sell?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.50.179/sell?characterEncoding=utf-8&useSSL=false
+#    url: jdbc:mysql://192.168.1.20/sell?characterEncoding=utf-8&useSSL=false
+
   jpa:
     show-sql: true
-
+# 空值前端返回不显示
+#  jackson:
+#    default-property-inclusion: non_null
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"
@@ -16,3 +20,4 @@ spring:
 
 server:
   context-path: /sell
+
