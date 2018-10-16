@@ -6,6 +6,7 @@ import com.lsh.dto.OrderDTO;
 import com.lsh.enums.ResultEnum;
 import com.lsh.exception.SellException;
 import com.lsh.form.OrderForm;
+import com.lsh.service.BuyerService;
 import com.lsh.service.OrderService;
 import com.lsh.utils.ResultVoUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,8 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private BuyerService buyerService;
 
     /**
         * @Description: 创建订单
@@ -91,17 +94,20 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVo<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
-        //TODO 不安全做法，改进
-        OrderDTO orderDTO = orderService.findOne(orderId);
+        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
         return ResultVoUtil.success(orderDTO);
     }
-
+    /**
+        * @Description: 取消订单
+    	* @Param [openid, orderId]
+    	* @Return com.lsh.VO.ResultVo
+        * @author lsh
+        * @date 2018/10/16 20:17
+        */
     @PostMapping("/cancel")
     public ResultVo cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId) {
-        //TODO 不安全做法，改进
-        OrderDTO orderDTO = orderService.findOne(orderId);
-        orderService.cancel(orderDTO);
+        buyerService.cancelOrder(openid, orderId);
         return ResultVoUtil.success();
     }
 }
