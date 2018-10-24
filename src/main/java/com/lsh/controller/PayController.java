@@ -9,9 +9,7 @@ import com.lsh.service.PayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -51,8 +49,18 @@ public class PayController {
         }
         //2.发起支付
 //        PayResponse payResponse = payService.create(orderDTO);
-
         map.put("orderId", orderId);
         return new ModelAndView("pay/create", map);
+    }
+
+    /**
+     * 微信异步通知
+     * @param notifyData
+     */
+    @PostMapping("/notify")
+    public ModelAndView notify(@RequestBody String notifyData) {
+        payService.notify(notifyData);
+        //返回处理结果给微信端
+        return new ModelAndView("pay/success");
     }
 }

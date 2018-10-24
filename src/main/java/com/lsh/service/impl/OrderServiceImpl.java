@@ -197,6 +197,13 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+        * @Description: 支付订单
+    	* @Param [orderDTO]
+    	* @Return com.lsh.dto.OrderDTO
+        * @author lsh
+        * @date 2018/10/23 21:35
+        */
     @Override
     @Transactional
     public OrderDTO paid(OrderDTO orderDTO) {
@@ -223,8 +230,19 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+        * @Description: 查询订单列表
+    	* @Param [pageable]
+    	* @Return org.springframework.data.domain.Page<com.lsh.dto.OrderDTO>
+        * @author lsh
+        * @date 2018/10/23 21:36
+        */
     @Override
     public Page<OrderDTO> findList(Pageable pageable) {
-        return null;
+        Page<OrderMaster> orderMasterPage = orderMasterDao.findAll(pageable);
+        //数据转换
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTO.convert(orderMasterPage.getContent());
+        Page<OrderDTO> orderDTOS = new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+        return orderDTOS;
     }
 }

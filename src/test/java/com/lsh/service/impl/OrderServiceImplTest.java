@@ -90,5 +90,8 @@ public class OrderServiceImplTest {
 
     @Test
     public void findList1() {
+        PageRequest request = new PageRequest(0, 2);
+        Page<OrderDTO> list = orderService.findList(request);
+        Assert.assertNotEquals(0, list.getTotalElements());
     }
 }

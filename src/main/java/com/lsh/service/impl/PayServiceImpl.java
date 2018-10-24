@@ -74,7 +74,7 @@ public class PayServiceImpl implements PayService {
             log.error("【微信支付】异步通知, 订单不存在, orderId={}", payResponse.getOrderId());
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
         }
-        //判断金额是否一致(0.10   0.1)
+        //判断金额是否一致(0.10    0.1)
         if (!MathUtil.equals(payResponse.getOrderAmount(), orderDTO.getOrderAmount().doubleValue())) {
             log.error("【微信支付】异步通知, 订单金额不一致, orderId={}, 微信通知金额={}, 系统金额={}",
                     payResponse.getOrderId(),
