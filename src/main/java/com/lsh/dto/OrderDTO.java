@@ -1,9 +1,13 @@
 package com.lsh.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lsh.dataobject.OrderDetail;
+import com.lsh.enums.OrderStatusEnum;
+import com.lsh.enums.PayStatusEnum;
 import com.lsh.utils.serializer.Date2Long;
+import com.lsh.utils.serializer.EnumUtil;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -58,4 +62,15 @@ public class OrderDTO {
 
     /** 订单详情. */
     List<OrderDetail> orderDetailList = new ArrayList<>();
+
+    /** 获取订单状态信息*/
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return  EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return  EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }
