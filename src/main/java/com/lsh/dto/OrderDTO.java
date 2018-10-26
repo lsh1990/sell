@@ -22,10 +22,10 @@ import java.util.List;
  * @Author lsh
  * @Date 2018/10/13 14:21
  * @Version
+ * //@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+ * //@JsonInclude(JsonInclude.Include.NON_NULL)
  */
 @Data
-//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
     /** 订单id. */
     @Id

@@ -24,7 +24,6 @@
                     </thead>
                     <tbody>
                     <#list orderDTOPage.content as orderDTO>
-                    debugger;
                         <tr>
                             <td>${orderDTO.orderId}</td>
                             <td>${orderDTO.buyerName}</td>
@@ -44,7 +43,26 @@
                 </table>
             </div>
         </div>
+        <#--分页-->
+        <div class="col-md-12 column">
+            <ul class="pagination pull-right">
+                <li>
+                    <a href="#">上一页</a>
+                </li>
+                <#list 1..orderDTOPage.getTotalPages() as index>
+                    <#if currentPage == index>
+                        <li class="disabled"><a href="#">${index}</a></li>
+                    <#else>
+                        <li><a href="/sell/seller/order/list?page=${index}&size=2">${index}</a></li>
+                    </#if>
+                </#list>
+                <li>
+                    <a href="#">下一页</a>
+                </li>
+            </ul>
+        </div>
     </div>
+
     </body>
 </html>
 
