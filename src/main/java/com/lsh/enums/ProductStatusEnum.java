@@ -10,7 +10,7 @@ import lombok.Getter;
  * @Version
  */
 @Getter
-public enum ProductStatusEnum {
+public enum ProductStatusEnum implements CodeEnum{
     /**
      * 在架
      */

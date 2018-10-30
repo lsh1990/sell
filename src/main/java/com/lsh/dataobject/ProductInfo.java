@@ -1,5 +1,8 @@
 package com.lsh.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lsh.enums.ProductStatusEnum;
+import com.lsh.utils.serializer.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -47,4 +50,9 @@ public class ProductInfo {
     private Date createTime;
 
     private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 }
