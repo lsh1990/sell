@@ -10,7 +10,7 @@ import lombok.Data;
  * @Version
  */
 @Data
-public class ResultVo<T> {
+public class ResultVO<T> {
     /**
      * 错误码
      */
@@ -24,12 +24,12 @@ public class ResultVo<T> {
      */
     private T data;
 
-    public ResultVo(Integer code, String msg, T data) {
+    public ResultVO(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public ResultVo() {
+    public ResultVO() {
     }
 }

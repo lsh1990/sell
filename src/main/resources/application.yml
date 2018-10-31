@@ -31,3 +31,8 @@ wechat:
   mchKey: 06C56A89949D617xxxxxxxxxxx
   keyPath: /var/weixin_cert/h5.p12
   notifyUrl: http://kydh.mynatapp.cc/sell/pay/notify
+
+projectUrl:
+  wechatMpAuthorize: http://kydh.mynatapp.cc
+  wechatOpenAuthorize: http://kydh.mynatapp.cc
+  sell: http://kydh.mynatapp.cc

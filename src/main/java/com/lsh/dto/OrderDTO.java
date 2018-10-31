@@ -17,18 +17,19 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @ClassName OrderDto
- * @Description: 订单-各层传输对象
+ * @ClassName OrderDTO
+ * @Description: 订单-DTO
  * @Author lsh
  * @Date 2018/10/13 14:21
  * @Version
- * //@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
- * //@JsonInclude(JsonInclude.Include.NON_NULL)
+ * 注解：属性为NULL的字段，不返回给前端
+ * @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+ * @JsonInclude(JsonInclude.Include.NON_NULL)
  */
 @Data
 public class OrderDTO {
+
     /** 订单id. */
-    @Id
     private String orderId;
 
     /** 买家名字. */
@@ -53,7 +54,6 @@ public class OrderDTO {
     private Integer payStatus;
 
     /** 创建时间. */
-    @JsonSerialize(using = Date2Long.class)
     private Date createTime;
 
     /** 更新时间. */
@@ -63,12 +63,13 @@ public class OrderDTO {
     /** 订单详情. */
     List<OrderDetail> orderDetailList = new ArrayList<>();
 
-    /** 获取订单状态信息*/
+    /** 获取订单状态信息.*/
     @JsonIgnore
     public OrderStatusEnum getOrderStatusEnum() {
         return  EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
     }
 
+    /** 获取支付状态信息.*/
     @JsonIgnore
     public PayStatusEnum getPayStatusEnum() {
         return  EnumUtil.getByCode(payStatus, PayStatusEnum.class);

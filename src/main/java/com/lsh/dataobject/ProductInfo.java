@@ -13,7 +13,7 @@ import java.util.Date;
 
 /**
  * @ClassName ProductInfo
- * @Description: 商品
+ * @Description: 商品-PO
  * @Author lsh
  * @Date 2018/10/7 13:45
  * @Version

@@ -6,14 +6,14 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @ClassName ProductVo
- * @Description: 商品（包含类目）
+ * @ClassName ProductVO
+ * @Description: 商品（包含类目）-VO
  * @Author lsh
  * @Date 2018/10/7 21:11
  * @Version
  */
 @Data
-public class ProductVo {
+public class ProductVO {
 
     @JsonProperty("name")
     private String categoryName;
@@ -22,5 +22,5 @@ public class ProductVo {
     private Integer categoryType;
 
     @JsonProperty("foods")
-    private List<ProductInfoVo> productInfoVoList;
+    private List<ProductInfoVO> productInfoVoList;
 }

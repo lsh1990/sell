@@ -31,8 +31,6 @@
                         <td>${orderDTO.buyerPhone}</td>
                         <td>${orderDTO.buyerAddress}</td>
                         <td>${orderDTO.orderAmount}</td>
-                    <#--<td>${orderDTO.orderStatus}</td>-->
-                    <#--<td>${orderDTO.payStatus}</td>-->
                         <td>${orderDTO.getOrderStatusEnum().message}</td>
                         <td>${orderDTO.getPayStatusEnum().message}</td>
                         <td>${orderDTO.createTime}</td>

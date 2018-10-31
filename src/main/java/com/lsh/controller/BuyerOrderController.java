@@ -1,6 +1,6 @@
 package com.lsh.controller;
 
-import com.lsh.VO.ResultVo;
+import com.lsh.VO.ResultVO;
 import com.lsh.converter.OrderForm2OrderDTO;
 import com.lsh.dto.OrderDTO;
 import com.lsh.enums.ResultEnum;
@@ -47,8 +47,8 @@ public class BuyerOrderController {
         * @author lsh
         * @date 2018/10/14 21:03
         */
-    @RequestMapping("/create")
-    public ResultVo<Map<String, String>> create(@Valid OrderForm orderForm, BindingResult bindingResult) {
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("【创建订单】参数不正确, orderForm={}", orderForm);
             throw new SellException(ResultEnum.PARAM_ERROR.getCode(),
@@ -72,7 +72,7 @@ public class BuyerOrderController {
         * @date 2018/10/14 21:44
         */
     @GetMapping("/list")
-    public ResultVo<List<OrderDTO>> list(@RequestParam("openid") String openid,
+    public ResultVO<List<OrderDTO>> list(@RequestParam("openid") String openid,
                                          @RequestParam(value = "page", defaultValue = "0") Integer page,
                                          @RequestParam(value = "size", defaultValue = "10") Integer size) {
         if (StringUtils.isEmpty(openid)) {
@@ -92,7 +92,7 @@ public class BuyerOrderController {
         * @date 2018/10/15 21:57
         */
     @GetMapping("/detail")
-    public ResultVo<OrderDTO> detail(@RequestParam("openid") String openid,
+    public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
         OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
         return ResultVoUtil.success(orderDTO);
@@ -105,7 +105,7 @@ public class BuyerOrderController {
         * @date 2018/10/16 20:17
         */
     @PostMapping("/cancel")
-    public ResultVo cancel(@RequestParam("openid") String openid,
+    public ResultVO cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId) {
         buyerService.cancelOrder(openid, orderId);
         return ResultVoUtil.success();
