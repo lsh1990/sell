@@ -28,4 +28,18 @@ public class PayServiceImplTest {
         OrderDTO orderDTO = orderService.findOne("1539523039237101736");
         payService.create(orderDTO);
     }
+
+    @Test
+    public void test1() {
+        Integer a = null;
+        try {
+            if (a > 5) {
+                System.out.println("进入-if!");
+            } else {
+                System.out.println("进入-else!");
+            }
+        }catch (Exception e) {
+            System.out.println("此处有异常!");
+        }
+    }
 }

@@ -5,7 +5,6 @@ import com.lsh.enums.ResultEnum;
 import com.lsh.exception.SellException;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.api.WxConsts;
-import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
@@ -44,7 +43,7 @@ public class WechatController {
         //2.调用方法
         String url = "http://kydh.mynatapp.cc/sell/wechat/userInfo";
         //链接需要注意编码
-        String redirect = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(returnUrl));
+        String redirect = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
         log.info("【微信网页授权】获取code, redirect={}", redirect);
         return "redirect:" + redirect;
     }
