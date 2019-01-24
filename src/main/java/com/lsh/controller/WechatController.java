@@ -41,7 +41,7 @@ public class WechatController {
 
         //1.配置
         //2.调用方法
-        String url = "http://kydh.mynatapp.cc/sell/wechat/userInfo";
+        String url = projectUrlConfig.getWechatMpAuthorize() + "sell/wechat/userInfo";
         //链接需要注意编码
         String redirect = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAUTH2_SCOPE_USER_INFO, URLEncoder.encode(returnUrl));
         log.info("【微信网页授权】获取code, redirect={}", redirect);
@@ -80,7 +80,7 @@ public class WechatController {
         */
     @GetMapping("/qrAuthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
-        String url = "http://kydh.mynatapp.cc/sell/wechat/qrUserInfo";
+        String url = projectUrlConfig.getWechatOpenAuthorize() + "/sell/wechat/qrUserInfo";
         String redirectUrl = wxOpenService.buildQrConnectUrl(url, WxConsts.QRCONNECT_SCOPE_SNSAPI_LOGIN, URLEncoder.encode(returnUrl));
         return "redirect:" + redirectUrl;
     }

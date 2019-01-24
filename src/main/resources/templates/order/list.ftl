@@ -71,7 +71,15 @@
             </div>
         </div>
     </div>
+    <script>
+        var websocket = null;
+        if ('websocket' in Window) {
+            websocket = new WebSocket('');
+        } else {
+            a
+        }
 
+    </script>
     </body>
 </html>
 
